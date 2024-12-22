@@ -7,21 +7,21 @@ build:
 		make build-swift; \
 	fi
 
-build-swift: aw_watcher_window/aw-watcher-window-macos
+build-swift: aa_watcher_window/aa-watcher-window-macos
 
-aw_watcher_window/aw-watcher-window-macos: aw_watcher_window/macos.swift
+aa_watcher_window/aa-watcher-window-macos: aa_watcher_window/macos.swift
 	swiftc $^ -o $@
 
 test:
-	aw-watcher-window --help
+	aa-watcher-window --help
 
 typecheck:
-	poetry run mypy aw_watcher_window/ --ignore-missing-imports
+	poetry run mypy aa_watcher_window/ --ignore-missing-imports
 
 package:
-	pyinstaller aw-watcher-window.spec --clean --noconfirm
+	pyinstaller aa-watcher-window.spec --clean --noconfirm
 
 clean:
 	rm -rf build dist
-	rm -rf aw_watcher_window/__pycache__
-	rm aw_watcher_window/aw-watcher-window-macos
+	rm -rf aa_watcher_window/__pycache__
+	rm aa_watcher_window/aa-watcher-window-macos

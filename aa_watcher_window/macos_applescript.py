@@ -3,7 +3,7 @@ from Foundation import NSAppleScript
 
 # the applescript version of the macos strategy is kept here until the jxa
 # approach is proven out in production environments
-# https://github.com/ActivityWatch/aw-watcher-window/pull/52
+# https://github.com/ActivityWatch/aa-watcher-window/pull/52
 
 source = """
 global frontApp, frontAppName, windowTitle

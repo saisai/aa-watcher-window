@@ -7,9 +7,9 @@ import sys
 from datetime import datetime, timezone
 from time import sleep
 
-from aw_client import ActivityWatchClient
-from aw_core.log import setup_logging
-from aw_core.models import Event
+from aa_client import ActivityWatchClient
+from aa_core.log import setup_logging
+from aa_core.models import Event
 
 from .config import parse_args
 from .exceptions import FatalError
@@ -49,7 +49,7 @@ def main():
         raise Exception("DISPLAY environment variable not set")
 
     setup_logging(
-        name="aw-watcher-window",
+        name="aa-watcher-window",
         testing=args.testing,
         verbose=args.verbose,
         log_stderr=True,
@@ -60,7 +60,7 @@ def main():
         background_ensure_permissions()
 
     client = ActivityWatchClient(
-        "aw-watcher-window", host=args.host, port=args.port, testing=args.testing
+        "aa-watcher-window", host=args.host, port=args.port, testing=args.testing
     )
 
     bucket_id = f"{client.client_name}_{client.client_hostname}"
@@ -68,14 +68,14 @@ def main():
 
     client.create_bucket(bucket_id, event_type, queued=True)
 
-    logger.info("aw-watcher-window started")
+    logger.info("aa-watcher-window started")
     client.wait_for_start()
 
     with client:
         if sys.platform == "darwin" and args.strategy == "swift":
             logger.info("Using swift strategy, calling out to swift binary")
             binpath = os.path.join(
-                os.path.dirname(os.path.realpath(__file__)), "aw-watcher-window-macos"
+                os.path.dirname(os.path.realpath(__file__)), "aa-watcher-window-macos"
             )
 
             try:

@@ -1,9 +1,9 @@
 import argparse
 
-from aw_core.config import load_config_toml
+from aa_core.config import load_config_toml
 
 default_config = """
-[aw-watcher-window]
+[aa-watcher-window]
 exclude_title = false
 exclude_titles = []
 poll_time = 1.0
@@ -12,7 +12,7 @@ strategy_macos = "swift"
 
 
 def load_config():
-    return load_config_toml("aw-watcher-window", default_config)["aw-watcher-window"]
+    return load_config_toml("aa-watcher-window", default_config)["aa-watcher-window"]
 
 
 def parse_args():
